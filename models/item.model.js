@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 //Schema för MongoDB
 const itemSchema = mongoose.Schema({
     name: String,
