@@ -1,6 +1,7 @@
 const Admin = require("../models/admin.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 //Hämta alla i personalens förnamn
 exports.getAllFirstnames = async(request, h) => {
@@ -49,8 +50,6 @@ exports.login = async(request, h) => {
             //Skapa JWT
             const payload = { username: username };
             const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' }); 
-            //Hämta användare utan lösenordet
-            const username = await User.findOne({ username: username }, { password: 0 });
 
             return h.response({ message: "Du är inloggad! " + token}).code(200);
         }
