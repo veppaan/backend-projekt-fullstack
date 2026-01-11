@@ -24,7 +24,7 @@ const init = async () => {
         description: String,
         price: Number,
         stock: Number,
-        articleNumber: String,
+        articleNumber: Number,
         image: String
     }
     )
@@ -38,6 +38,16 @@ const init = async () => {
                     return await Product.find();
                 } catch (error) {
                     return h.response("There was an error fetching all products: " + error).code(500);
+                }
+            },
+            method: "POST",
+            path: "/products",
+            handler: async (request, h) => {
+                try {
+                    const product = new Product(request.payload);
+                    return await product.save();
+                } catch (error) {
+                    return h.response("There was an error posting a product: " + error).code(500);
                 }
             }
         }
