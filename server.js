@@ -7,7 +7,7 @@ require("dotenv").config();
 const init = async () => {
 
     const server = Hapi.server({
-        port: 5000,
+        port: 5001,
         host: '0.0.0.0'
     });
 
@@ -17,6 +17,31 @@ const init = async () => {
     }).catch((error) => {
         console.error("Error connecting to database: " + error);
     });
+
+    //Model
+    const Product = mongoose.model("Product", {
+        name: String,
+        description: String,
+        price: Number,
+        stock: Number,
+        articleNumber: String,
+        image: String
+    }
+    )
+    //Route
+    server.route([
+        {
+            method: "GET",
+            path: "/products",
+            handler: async (request, h) => {
+                try {
+                    return await Product.find();
+                } catch (error) {
+                    return h.response("There was an error fetching all products: " + error).code(500);
+                }
+            }
+        }
+    ])
 
     //Startar server
     await server.start();
