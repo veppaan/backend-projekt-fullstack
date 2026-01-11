@@ -1,12 +1,21 @@
 'use strict';
-//Använder hapi
+//Använder hapi, mongoose och env
 const Hapi = require('@hapi/hapi');
+const mongoose = require("mongoose");
+require("dotenv").config();
 
 const init = async () => {
 
     const server = Hapi.server({
         port: 5000,
         host: '0.0.0.0'
+    });
+
+    //Anslutning till Mongodb
+    mongoose.connect(process.env.DATABASE).then(() => {
+        console.log("Connected to MongoDB")
+    }).catch((error) => {
+        console.error("Error connecting to database: " + error);
     });
 
     //Startar server
