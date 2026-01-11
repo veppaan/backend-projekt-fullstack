@@ -18,6 +18,7 @@ const init = async () => {
     });
 
     require("./routes/item.route")(server);
+    require("./routes/admin.route")(server);
 
     //Startar server
     await server.start();
