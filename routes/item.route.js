@@ -15,13 +15,15 @@ module.exports = (server) => {
             //GET-route för alla varor
             method: "GET",
             path: "/items",
-            handler: itemController.getAllItems
+            handler: itemController.getAllItems,
+            options: { auth: 'jwt' }
         },
         {
             //GET-route för angivet id
             method: "GET",
             path: "/items/{id}",
-            handler: itemController.getOneItem
+            handler: itemController.getOneItem,
+            options: { auth: 'jwt' }
         },
         {
             //POST-route med valideringar och meddelanden 
@@ -29,6 +31,7 @@ module.exports = (server) => {
             path: "/items",
             handler: itemController.addItem,
             options: {
+                auth: 'jwt',
                 validate: {
                     payload: Joi.object({
                         name: Joi.string().min(3).max(50).required()
@@ -79,6 +82,7 @@ module.exports = (server) => {
             path: "/items/{id}",
             handler: itemController.updateItem,
             options: {
+                auth: 'jwt',
                 validate: {
                     payload: Joi.object({
                         name: Joi.string().min(3).max(50).required()
@@ -126,7 +130,8 @@ module.exports = (server) => {
             //Radera en vara med angivet id
             method: "DELETE",
             path: "/items/{id}",
-            handler: itemController.deleteItem
+            handler: itemController.deleteItem,
+            options: { auth: 'jwt' }
         }
     ])
 }

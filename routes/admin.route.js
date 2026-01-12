@@ -15,10 +15,11 @@ module.exports = (server) => {
             //GET-route för personalens förnamn
             method: "GET",
             path: "/admins",
-            handler: adminController.getAllFirstnames
+            handler: adminController.getAllFirstnames,
+            options: { auth: 'jwt' }
         },
         {
-            //GET-route för personalens förnamn
+            //GET-route för att logga in
             method: "POST",
             path: "/admins/login",
             handler: adminController.login
@@ -125,7 +126,8 @@ module.exports = (server) => {
             //Radera en admin med angivet id
             method: "DELETE",
             path: "/admins/{id}",
-            handler: adminController.deleteAdmin
+            handler: adminController.deleteAdmin,
+            options: { auth: 'jwt' }
         }
     ])
 }
