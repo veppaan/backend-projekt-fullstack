@@ -8,7 +8,12 @@ require("dotenv").config();
 const init = async () => {
     const server = Hapi.server({
         port: 5001,
-        host: '0.0.0.0'
+        host: '0.0.0.0',
+        routes: {
+            corse: {
+                origin: ['*']
+            }
+        }
     });
 
     //Anslutning till Mongodb
