@@ -58,6 +58,22 @@ exports.updateItem = async(request, h) => {
     }
 }
 
+//Uppdatera saldo för en vara
+exports.updateStock = async(request, h) => {
+    try {
+        const { stock } = request.payload
+            //Uppdaterar saldot
+            const updateStock = await Item.findByIdAndUpdate(request.params.id, { stock },{ new: true, runValidators: true });
+            if(!updateItem){
+                return h.response({ message: "Vara med angivet id hittas inte, kontrollera och försök igen"}).code(404);
+            } else {
+                return h.response({message: `Saldot uppdaterades till ${updateStock.stock}`});
+            }
+    } catch(err) {
+        return h.response("Error with update-route: " + err.messages).code(500);
+    }
+}
+
 //Radera varan
 exports.deleteItem = async(request, h) => {
     try {

@@ -127,6 +127,26 @@ module.exports = (server) => {
             }
         },
         {
+            //Uppdatera en saldo med angivet id
+            method: "PUT",
+            path: "/items/edit/{id}",
+            handler: itemController.updateStock,
+            options: {
+                auth: 'jwt',
+                validate: {
+                    payload: Joi.object({
+                        stock: Joi.number().min(0).max(10000).required()
+                            .messages({
+                                'number.base': 'Stock (lagersaldo) måste vara ett nummer!',
+                                'any.required': 'Stock (lagersaldo) är obligatorisk att fylla i!',
+                                'number.min': 'Stock (lagersaldo) får inte vara mindre än 1!',
+                                'number.max': 'Stock (lagersaldo) får inte vara mer än 10000!'
+                            })
+                    }),
+                },
+            }
+        },
+        {
             //Radera en vara med angivet id
             method: "DELETE",
             path: "/items/{id}",
