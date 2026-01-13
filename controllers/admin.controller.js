@@ -51,7 +51,7 @@ exports.login = async(request, h) => {
             const payload = { username: username };
             const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' }); 
 
-            return h.response({ message: "Du är inloggad! " + token}).code(200);
+            return h.response({ message: "Du är inloggad! ", token: token}).code(200);
         }
 
     } catch(err) {
