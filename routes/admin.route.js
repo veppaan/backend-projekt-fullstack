@@ -48,18 +48,6 @@ module.exports = (server) => {
                                 'string.min': 'Förnamn får inte vara mindre än 3 tecken!',
                                 'string.max': 'Förnamn får inte vara längre än 50 tecken!'
                             }),
-                        lastname: Joi.string()
-                            .messages({
-                                'string.base': 'Förnamn måste vara en sträng!'
-                            }),
-                        jobtitle: Joi.string().min(3).max(50).required()
-                            .messages({
-                                'string.empty': 'Jobbtitel får inte vara tomt!',
-                                'any.required': 'Jobbtitel är obligatorisk att fylla i!',
-                                'string.base': 'Jobbtitel måste vara en sträng!',
-                                'string.min': 'Jobbtitel får inte vara mindre än 3 tecken!',
-                                'string.max': 'Jobbtitel får inte vara längre än 50 tecken!'
-                            }),
                         password: Joi.string().min(3).max(100).required()
                             .messages({
                                 'string.empty': 'Lösenord får inte vara tomt!',

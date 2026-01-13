@@ -13,16 +13,6 @@ const adminSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    lastname: {
-        type: String,
-        required: false,
-        trim: true
-    },
-    jobtitle: {
-        type: String,
-        required: true,
-        trim: true
-    },
     password: {
         type: String,
         required: true
