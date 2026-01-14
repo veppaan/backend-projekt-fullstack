@@ -9,7 +9,7 @@ module.exports = (server) => {
             path: "/auth",
             options: { auth: 'jwt' },
             handler: (request, h) => {
-                return {valid: true}
+                return {valid: true, user: request.auth.credentials}
             }
         }
     ])
