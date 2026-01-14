@@ -43,7 +43,9 @@ exports.login = async(request, h) => {
         }
 
         const matchedPassword = await bcrypt.compare(password, adminUsername.password);
+        
         const firstnameUser = adminUsername.firstname
+        console.log(firstnameUser)
 
         if(!matchedPassword){
             return h.response({ message: "Ogiltigt användarnamn/lösenord!"}).code(401);
