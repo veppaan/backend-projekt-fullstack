@@ -35,7 +35,7 @@ exports.register = async(request, h) => {
 //Logga in en admin
 exports.login = async(request, h) => {
     try {
-        const { username, password, firstname } = request.payload;
+        const { username, password } = request.payload;
         const adminUsername = await Admin.findOne({ username });
 
         if(!adminUsername){
@@ -43,12 +43,13 @@ exports.login = async(request, h) => {
         }
 
         const matchedPassword = await bcrypt.compare(password, adminUsername.password);
+        const firstnameUser = adminUsername.firstname
 
         if(!matchedPassword){
             return h.response({ message: "Ogiltigt användarnamn/lösenord!"}).code(401);
         }else{
             //Skapa JWT
-            const payload = { username: username, firstname: firstname };
+            const payload = { username: username, firstname: firstnameUser };
             const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' }); 
 
             return h.response({ message: "Du är inloggad! ", token: token}).code(200);
