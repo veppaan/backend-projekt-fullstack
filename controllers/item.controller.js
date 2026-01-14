@@ -70,7 +70,7 @@ exports.updateStock = async(request, h) => {
                 return h.response({message: `Saldot uppdaterades till ${updateStock.stock}`});
             }
     } catch(err) {
-        return h.response("Error with update-route: " + err.messages).code(500);
+        return h.response("Error with updating stock: " + err + err.messages).code(500);
     }
 }
 
