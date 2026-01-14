@@ -64,7 +64,7 @@ exports.updateStock = async(request, h) => {
         const { stock } = request.payload
             //Uppdaterar saldot
             const updateStock = await Item.findByIdAndUpdate(request.params.id, { stock },{ new: true, runValidators: true });
-            if(!updateItem){
+            if(!updateStock){
                 return h.response({ message: "Vara med angivet id hittas inte, kontrollera och försök igen"}).code(404);
             } else {
                 return h.response({message: `Saldot uppdaterades till ${updateStock.stock}`});
