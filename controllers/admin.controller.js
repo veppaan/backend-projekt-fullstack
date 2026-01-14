@@ -6,7 +6,7 @@ require("dotenv").config();
 //Hämta alla i personalens förnamn
 exports.getAllFirstnames = async(request, h) => {
     try {
-        return await Admin.find({}, "firstname");
+        return await Admin.find({}, {firstname: 1, _id: 0, username: 0, password: 0});
     } catch(err) {
         return h.response("Error with get-route: " + err).code(500);
     }
