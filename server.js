@@ -43,6 +43,7 @@ const init = async () => {
 
     require("./routes/item.route")(server);
     require("./routes/admin.route")(server);
+    require("./routes/authToken.route")(server);
 
     //Startar server
     await server.start();
