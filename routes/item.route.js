@@ -111,7 +111,7 @@ module.exports = (server) => {
                                 'number.min': 'Stock (lagersaldo) får inte vara mindre än 1!',
                                 'number.max': 'Stock (lagersaldo) får inte vara mer än 10000!'
                             }),
-                        articleNumber: Joi.number().min(1).max(999).required()
+                        articleNumber: Joi.number().min(1).max(10000).required()
                             .messages({
                                 'number.base': 'Artikelnummer måste vara ett nummer!',
                                 'any.required': 'Artikelnummer är obligatorisk att fylla i!',
