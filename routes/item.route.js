@@ -14,6 +14,12 @@ module.exports = (server) => {
         {
             //GET-route för alla varor
             method: "GET",
+            path: "/",
+            handler: itemController.welcomeMessage
+        },
+        {
+            //GET-route för alla varor
+            method: "GET",
             path: "/items",
             handler: itemController.getAllItems,
             options: { auth: 'jwt' }

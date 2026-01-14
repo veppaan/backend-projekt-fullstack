@@ -1,7 +1,7 @@
 const Item = require("../models/item.model");
 
 //Skriv ut välkomsmeddelande
-exports.welcomeMsg = async(request, h) => {
+exports.welcomeMessage = async(request, h) => {
     try {
         return "Välkommen till API:et, lägg till ändelsen /items för att komma till alla varor";
     } catch(err) {

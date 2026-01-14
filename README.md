@@ -1,9 +1,9 @@
 **Vera Kippel veki2400**
 
 Ett API byggt med hapi. 
-API:et hanterar en tabell med varor.
+API:et hanterar en tabell med varor samt admin konton vid inloggning/registrering.
 
-Tabellens namn heter "items" som skapats med hjälp av MongoDB och mongoose.  
+Första tabellens namn heter "items" som skapats med hjälp av MongoDB och mongoose.  
 Tabellens innehåll:
 - _id
 - name(string)
@@ -35,5 +35,33 @@ Varans JSON-struktur kan se ut såhär:
   "stock": 8,
   "articleNumber": 234,
   "image": "image.jpg"
+}
+
+Andra tabellens namn heter "admins" som skapats med hjälp av MongoDB och mongoose.  
+Tabellens innehåll:
+- _id
+- username(string)
+- firstname(string)
+- password(string)
+- stock(number)
+- __v: 0 (som skapas automatiskt av mongodb)
+
+
+Användning:
+
+|Metod | Ändpunkt | Beskrivning |
+-------|----------|-------------|
+|GET | "/admins" | Hämta alla förnamn i personalen|
+|POST | "/admin/login" | Loggar in en personal med registrerat inlogg|
+|POST | "/admins/register" | Skapar inloggning för personal|
+|PUT | "/admins/{id}" | Uppdaterar inlogging med angivet id|
+|DELETE | "/admins/{id}" | Radera en inloggning med angivet id|
+
+Personalens JSON-struktur kan se ut såhär:
+```json
+{
+  "firstname": "Vera",
+  "username": "mittkonto",
+  "password": "mittlösenord"
 }
 ```
