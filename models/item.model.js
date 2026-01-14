@@ -6,7 +6,9 @@ const itemSchema = mongoose.Schema({
     description: String,
     price: Number,
     stock: Number,
-    articleNumber: Number,
+    articleNumber: {
+        unique: true
+    },
     image: String
 });
 
