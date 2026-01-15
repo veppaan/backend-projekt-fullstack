@@ -38,8 +38,6 @@ exports.addItem = async(request, h) => {
     try {
         //Kollar om artikelnummer som skickats in finns
         const { articleNumber } = request.payload
-        const { _id } = request.payload
-        const currrentArt = await Item.findById(_id)
         const checkUniqueArt = await Item.findOne({ articleNumber })
         //Skicka error om den finns
         if(checkUniqueArt && checkUniqueArt !== currrentArt.articleNumber){
@@ -63,10 +61,12 @@ exports.addItem = async(request, h) => {
 exports.updateItem = async(request, h) => {
     try {
             //Kollar om artikelnummer som skickats in finns
+            const { _id } = request.payload
+            const currrentArt = await Item.findById(_id)
             const { articleNumber } = request.payload
             const checkUniqueArt = await Item.findOne({ articleNumber })
             //Skicka error om den finns
-            if(checkUniqueArt){
+            if(checkUniqueArt && checkUniqueArt !== currrentArt.articleNumber){
                 return h.response({
                     success: false,
                     errors: {
