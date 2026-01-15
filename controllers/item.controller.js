@@ -41,9 +41,14 @@ exports.addItem = async(request, h) => {
         const { error } = Item.validate(request.payload, { 
             abortEarly: false 
           });
-          //Tar ut error-meddelanden
+          //Tar ut error-meddelanden med namn i loop
           if (error) {
-            const errors = error.details.map(detail => detail.message);       
+            const errors = {}
+            error.details.forEach(e => {
+                const nameErr = e.path[0]
+                errors[nameErr] = e.message
+            });
+   
             return h.response({
               statusCode: 400,
               errors: errors
