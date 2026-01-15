@@ -33,12 +33,12 @@ module.exports = (server) => {
             options: {
                 validate: {
                     payload: Joi.object({
-                        username: Joi.string().min(3).max(50).required()
+                        username: Joi.string().required()
                             .messages({
                                 'string.empty': 'Användarnamn får inte vara tomt!',
                                 'any.required': 'Användarnamn är obligatorisk att fylla i!'
                             }),
-                        password: Joi.string().min(3).max(100).required()
+                        password: Joi.string().required()
                             .messages({
                                 'string.empty': 'Lösenord får inte vara tomt!',
                                 'any.required': 'Lösenord är obligatorisk att fylla i!'
