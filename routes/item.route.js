@@ -2,13 +2,20 @@ const itemController = require("../controllers/item.controller");
 const Joi = require("joi");
 
 module.exports = (server) => {
-           //Felhantering som gör så att specifika meddelanden från joi kan visas
-           const failAction = (request, h, error) => {
-            return h.response({
-              success: false,
-              error: error.details[0].message
-            }).code(400).takeover();
-          };
+        //Felhantering som gör så att specifika meddelanden från joi kan visas
+        const failAction = (request, h, error) => {
+            //Hämtar ut alla errors så inte den stannar på första felet
+            const errors = {}
+            //Tar ut error-meddelanden med namn i loop
+                error.details.forEach(e => {
+                    const nameErr = e.path[0]
+                    errors[nameErr] = e.message
+                });
+        return h.response({
+            success: false,
+            error: errors
+        }).code(400).takeover();
+    };
     //Routes
     server.route([
         {
