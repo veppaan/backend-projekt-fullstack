@@ -4,14 +4,11 @@ const Item = require("../models/item.model");
 
 module.exports = (server) => {
         //Felhantering som gör så att specifika meddelanden från joi kan visas
-        const failAction = (request, h) => {
-            const { err } = Item.validate(request.payload, { abortEarly: false })
-
-            if(err){
-            //Hämtar ut alla errors så inte den stannar på första felet
+        const failAction = (request, h, error) => {
             const errors = {}
+            
             //Tar ut error-meddelanden med namn i loop
-                err.details.forEach(e => {
+                error.details.forEach(e => {
                     const nameErr = e.path[0]
                     errors[nameErr] = e.message
                 });
@@ -20,7 +17,6 @@ module.exports = (server) => {
             success: false,
             errors: errors
         }).code(400).takeover();
-    }
     };
     //Routes
     server.route([
@@ -91,7 +87,10 @@ module.exports = (server) => {
                                 'string.base': 'Bildens url måste vara en sträng!',
                             })
                     }),
-                    failAction: failAction
+                    failAction: failAction,
+                    options: {
+                        abortEarly: false
+                    }
                 },
             }
         },
