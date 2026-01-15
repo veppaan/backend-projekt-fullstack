@@ -51,7 +51,7 @@ exports.login = async(request, h) => {
         }else{
             //Skapa JWT
             const payload = { username: username, firstname: firstnameUser };
-            const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' }); 
+            const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '3h' }); 
 
             return h.response({ message: "Du är inloggad! ", token: token}).code(200);
         }
