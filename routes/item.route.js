@@ -99,9 +99,10 @@ module.exports = (server) => {
                                 'string.min': 'Namn får inte vara mindre än 3 tecken!',
                                 'string.max': 'Namn får inte vara längre än 50 tecken!'
                             }),
-                        description: Joi.string()
+                        description: Joi.string().min(3).required()
                             .messages({
-                                'string.base': 'Namn måste vara en sträng!'
+                                'string.base': 'Namn måste vara en sträng!',
+                                'string.min': 'Namn får inte vara mindre än 3 tecken!'
                             }),
                         price: Joi.number().min(1).max(10000).required()
                             .messages({
