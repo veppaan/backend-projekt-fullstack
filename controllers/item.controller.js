@@ -36,25 +36,6 @@ exports.getOneItem = async(request, h) => {
 //Lägg till en vara
 exports.addItem = async(request, h) => {
     try {
-        //Hämtar ut alla errors så inte den stannar på första felet
-        //Validerar hela schemat
-        const { error } = Item.validate(request.payload, { 
-            abortEarly: false 
-          });
-          //Tar ut error-meddelanden med namn i loop
-          if (error) {
-            const errors = {}
-            error.details.forEach(e => {
-                const nameErr = e.path[0]
-                errors[nameErr] = e.message
-            });
-   
-            return h.response({
-              statusCode: 400,
-              errors: errors
-            }).code(400);
-          }
-
         const item = new Item(request.payload);
         
         return await item.save();
