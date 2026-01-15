@@ -61,12 +61,11 @@ exports.addItem = async(request, h) => {
 exports.updateItem = async(request, h) => {
     try {
             //Kollar om artikelnummer som skickats in finns
-            const { id } = request.payload
-            const currrentArt = await Item.findById(id)
-            const { articleNumber } = request.payload
-            const checkUniqueArt = await Item.findOne({ articleNumber })
+            const { id, articleNumber } = request.payload
+            //Ignorerar nuvarande id för att den inte ska hitta sig själv
+            const checkUniqueArt = await Item.findOne({ articleNumber: articleNumber, _id: {$ne: id} })
             //Skicka error om den finns
-            if(checkUniqueArt && checkUniqueArt !== currrentArt.articleNumber){
+            if(checkUniqueArt){
                 return h.response({
                     success: false,
                     errors: {
