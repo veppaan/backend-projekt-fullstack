@@ -123,21 +123,21 @@ module.exports = (server) => {
                             }),
                         price: Joi.number().min(1).max(10000).required()
                             .messages({
-                                'number.base': 'Pris måste vara ett nummer!',
+                                'number.base': 'Pris måste innehålla ett nummer!',
                                 'any.required': 'Pris är obligatorisk att fylla i!',
                                 'number.min': 'Pris får inte vara mindre än 1!',
                                 'number.max': 'Pris får inte vara mer än 10000!'
                             }),
                         stock: Joi.number().min(0).max(10000).required()
                             .messages({
-                                'number.base': 'Lagersaldo måste vara ett nummer!',
+                                'number.base': 'Lagersaldo måste innehålla ett nummer!',
                                 'any.required': 'Lagersaldo är obligatorisk att fylla i!',
                                 'number.min': 'Lagersaldo får inte vara mindre än 1!',
                                 'number.max': 'Lagersaldo får inte vara mer än 10000!'
                             }),
                         articleNumber: Joi.number().min(1).max(10000).required()
                             .messages({
-                                'number.base': 'Artikelnummer måste vara ett nummer!',
+                                'number.base': 'Artikelnummer måste innehålla ett nummer!',
                                 'any.required': 'Artikelnummer är obligatorisk att fylla i!',
                                 'number.min': 'Artikelnummer får inte vara mindre än 1!',
                                 'number.max': 'Artikelnummer får inte vara mer än 999!'

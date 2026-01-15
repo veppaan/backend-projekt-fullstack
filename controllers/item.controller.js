@@ -36,6 +36,19 @@ exports.getOneItem = async(request, h) => {
 //Lägg till en vara
 exports.addItem = async(request, h) => {
     try {
+        //Kollar om artikelnummer som skickats in finns
+        const { articleNumber } = request.payload
+        const checkUniqueArt = await Item.findOne({ articleNumber })
+        //Skicka error om den finns
+        if(checkUniqueArt){
+            return h.response({
+                success: false,
+                errors: {
+                    articleNumber: 'Artikelnumret måste vara unikt'
+                }
+            }).code(409)
+        }
+
         const item = new Item(request.payload);
         
         return await item.save();
@@ -47,6 +60,19 @@ exports.addItem = async(request, h) => {
 //Uppdatera vara
 exports.updateItem = async(request, h) => {
     try {
+            //Kollar om artikelnummer som skickats in finns
+            const { articleNumber } = request.payload
+            const checkUniqueArt = await Item.findOne({ articleNumber })
+            //Skicka error om den finns
+            if(checkUniqueArt){
+                return h.response({
+                    success: false,
+                    errors: {
+                        articleNumber: 'Artikelnumret måste vara unikt'
+                    }
+                }).code(409)
+            }
+            
             //Uppdaterar varan
             const updateItem = await Item.findByIdAndUpdate(request.params.id, request.payload,{ new: true, runValidators: true });
             if(!updateItem){
