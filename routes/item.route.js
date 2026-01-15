@@ -66,17 +66,17 @@ module.exports = (server) => {
                             }),
                         price: Joi.number().min(1).max(10000).required()
                             .messages({
-                                'number.base': 'Pris måste vara ett nummer!',
+                                'number.base': 'Pris måste innehålla ett nummer!',
                                 'any.required': 'Pris är obligatorisk att fylla i!',
                                 'number.min': 'Pris får inte vara mindre än 1!',
                                 'number.max': 'Pris får inte vara mer än 10000!'
                             }),
                         stock: Joi.number().min(0).max(10000).required()
                             .messages({
-                                'number.base': 'Stock (lagersaldo) måste vara ett nummer!',
-                                'any.required': 'Stock (lagersaldo) är obligatorisk att fylla i!',
-                                'number.min': 'Stock (lagersaldo) får inte vara mindre än 1!',
-                                'number.max': 'Stock (lagersaldo) får inte vara mer än 10000!'
+                                'number.base': 'Lagersaldo måste innehålla ett nummer!',
+                                'any.required': 'Lagersaldo är obligatorisk att fylla i!',
+                                'number.min': 'Lagersaldo får inte vara mindre än 1!',
+                                'number.max': 'Lagersaldo får inte vara mer än 10000!'
                             }),
                         articleNumber: Joi.number().min(1).max(999).required()
                             .messages({
@@ -130,10 +130,10 @@ module.exports = (server) => {
                             }),
                         stock: Joi.number().min(0).max(10000).required()
                             .messages({
-                                'number.base': 'Stock (lagersaldo) måste vara ett nummer!',
-                                'any.required': 'Stock (lagersaldo) är obligatorisk att fylla i!',
-                                'number.min': 'Stock (lagersaldo) får inte vara mindre än 1!',
-                                'number.max': 'Stock (lagersaldo) får inte vara mer än 10000!'
+                                'number.base': 'Lagersaldo måste vara ett nummer!',
+                                'any.required': 'Lagersaldo är obligatorisk att fylla i!',
+                                'number.min': 'Lagersaldo får inte vara mindre än 1!',
+                                'number.max': 'Lagersaldo får inte vara mer än 10000!'
                             }),
                         articleNumber: Joi.number().min(1).max(10000).required()
                             .messages({
