@@ -1,9 +1,13 @@
 const itemController = require("../controllers/item.controller");
 const Joi = require("joi");
+const Item = require("../models/item.model");
 
 module.exports = (server) => {
         //Felhantering som gör så att specifika meddelanden från joi kan visas
         const failAction = (request, h, error) => {
+            const { error } = Item.validate(request.payload, { abortEarly: false })
+
+            if(error){
             //Hämtar ut alla errors så inte den stannar på första felet
             const errors = {}
             //Tar ut error-meddelanden med namn i loop
@@ -11,10 +15,12 @@ module.exports = (server) => {
                     const nameErr = e.path[0]
                     errors[nameErr] = e.message
                 });
+            
         return h.response({
             success: false,
-            error: errors
+            errors: errors
         }).code(400).takeover();
+    }
     };
     //Routes
     server.route([
