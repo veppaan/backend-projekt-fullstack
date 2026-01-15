@@ -4,7 +4,7 @@ const Item = require("../models/item.model");
 
 module.exports = (server) => {
         //Felhantering som gör så att specifika meddelanden från joi kan visas
-        const failAction = (request, h, error) => {
+        const failAction = (request, h) => {
             const { err } = Item.validate(request.payload, { abortEarly: false })
 
             if(err){
