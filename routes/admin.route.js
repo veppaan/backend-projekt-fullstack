@@ -29,7 +29,27 @@ module.exports = (server) => {
             //POST-route för att logga in
             method: "POST",
             path: "/admins/login",
-            handler: adminController.login
+            handler: adminController.login,
+            options: {
+                validate: {
+                    payload: Joi.object({
+                        username: Joi.string().min(3).max(50).required()
+                            .messages({
+                                'string.empty': 'Användarnamn får inte vara tomt!',
+                                'any.required': 'Användarnamn är obligatorisk att fylla i!'
+                            }),
+                        password: Joi.string().min(3).max(100).required()
+                            .messages({
+                                'string.empty': 'Lösenord får inte vara tomt!',
+                                'any.required': 'Lösenord är obligatorisk att fylla i!'
+                            })
+                    }),
+                    failAction: failAction,
+                    options: {
+                        abortEarly: false
+                    }
+                },
+            }
         },
         {
             //POST-route med valideringar och meddelanden för registrering av admin
