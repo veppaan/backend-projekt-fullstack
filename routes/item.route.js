@@ -57,9 +57,11 @@ module.exports = (server) => {
                                 'string.min': 'Namn får inte vara mindre än 3 tecken!',
                                 'string.max': 'Namn får inte vara längre än 50 tecken!'
                             }),
-                        description: Joi.string()
+                        description: Joi.string().min(3).required()
                             .messages({
-                                'string.base': 'Namn måste vara en sträng!'
+                                'string.base': 'Beskrivning måste vara en sträng!',
+                                'any.required': 'Beskrivning är obligatorisk att fylla i!',
+                                'string.min': 'Beskrivning får inte vara mindre än 3 tecken!'
                             }),
                         price: Joi.number().min(1).max(10000).required()
                             .messages({
@@ -113,8 +115,9 @@ module.exports = (server) => {
                             }),
                         description: Joi.string().min(3).required()
                             .messages({
-                                'string.base': 'Namn måste vara en sträng!',
-                                'string.min': 'Namn får inte vara mindre än 3 tecken!'
+                                'string.base': 'Beskrivning måste vara en sträng!',
+                                'any.required': 'Beskrivning är obligatorisk att fylla i!',
+                                'string.min': 'Beskrivning får inte vara mindre än 3 tecken!'
                             }),
                         price: Joi.number().min(1).max(10000).required()
                             .messages({
@@ -142,6 +145,10 @@ module.exports = (server) => {
                                 'string.base': 'Bildens url måste vara en sträng!',
                             })
                     }),
+                    failAction: failAction,
+                    options: {
+                        abortEarly: false
+                    }
                 },
             }
         },

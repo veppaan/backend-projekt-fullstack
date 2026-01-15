@@ -4,18 +4,18 @@ const Joi = require("joi");
 module.exports = (server) => {
     //Felhantering som gör så att specifika meddelanden från joi kan visas
     const failAction = (request, h, error) => {
-        //Hämtar ut alla errors så inte den stannar på första felet
         const errors = {}
-          //Tar ut error-meddelanden med namn i loop
+        //Tar ut error-meddelanden med namn i loop
             error.details.forEach(e => {
                 const nameErr = e.path[0]
                 errors[nameErr] = e.message
             });
-        return h.response({
-            success: false,
-            error: errors
-        }).code(400).takeover();
-    };
+        
+    return h.response({
+        success: false,
+        errors: errors
+    }).code(400).takeover();
+};
     //Routes
     server.route([
         {
@@ -26,7 +26,7 @@ module.exports = (server) => {
             options: { auth: 'jwt' }
         },
         {
-            //GET-route för att logga in
+            //POST-route för att logga in
             method: "POST",
             path: "/admins/login",
             handler: adminController.login
@@ -64,7 +64,10 @@ module.exports = (server) => {
                                 'string.max': 'Lösenord får inte vara längre än 100 tecken!'
                             })
                     }),
-                    failAction: failAction
+                    failAction: failAction,
+                    options: {
+                        abortEarly: false
+                    }
                 },
             }
         },
@@ -113,7 +116,10 @@ module.exports = (server) => {
                                 'string.max': 'Lösenord får inte vara längre än 100 tecken!'
                             })
                     }),
-                    failAction: failAction
+                    failAction: failAction,
+                    options: {
+                        abortEarly: false
+                    }
                 },
             }
         },
