@@ -5,13 +5,13 @@ const Item = require("../models/item.model");
 module.exports = (server) => {
         //Felhantering som gör så att specifika meddelanden från joi kan visas
         const failAction = (request, h, error) => {
-            const { error } = Item.validate(request.payload, { abortEarly: false })
+            const { err } = Item.validate(request.payload, { abortEarly: false })
 
-            if(error){
+            if(err){
             //Hämtar ut alla errors så inte den stannar på första felet
             const errors = {}
             //Tar ut error-meddelanden med namn i loop
-                error.details.forEach(e => {
+                err.details.forEach(e => {
                     const nameErr = e.path[0]
                     errors[nameErr] = e.message
                 });
