@@ -115,6 +115,7 @@ module.exports = (server) => {
                             }),
                         description: Joi.string().min(3).required()
                             .messages({
+                                'string.empty': 'Beskrivning får inte vara tomt!',
                                 'string.base': 'Beskrivning måste vara en sträng!',
                                 'any.required': 'Beskrivning är obligatorisk att fylla i!',
                                 'string.min': 'Beskrivning får inte vara mindre än 3 tecken!'
