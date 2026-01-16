@@ -41,7 +41,7 @@ exports.register = async(request, h) => {
 
         return await admin.save();
     } catch(err) {
-        return h.response("Error register an admin: " + err.messages).code(500);
+        return h.response("Error register an admin: " + err).code(500);
     }
 }
 
