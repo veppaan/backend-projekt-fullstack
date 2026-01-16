@@ -16,7 +16,7 @@ exports.getAllFirstnames = async(request, h) => {
 exports.register = async(request, h) => {
     try {
         //Kollar om användarnamn som skickats in finns
-        const { user } = request.payload
+        const {username, firstname, password} = request.payload;
         //Ignorerar nuvarande id för att den inte ska hitta sig själv
         const checkUniqueUser = await Admin.findOne({ username: user, _id: { $ne: request.params.id } })
         //Skicka error om den finns
@@ -28,14 +28,13 @@ exports.register = async(request, h) => {
                 }
             }).code(409)
         }
-        const {username, firstname, lastname, jobtitle, password} = request.payload;
+
+        //Hashar lösenord med saltning 10
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const admin = new Admin({
             username,
             firstname,
-            lastname,
-            jobtitle,
             password: hashedPassword
         })
 
