@@ -1,5 +1,5 @@
 'use strict';
-//Använder hapi, mongoose och env
+//Använder hapi, mongoose, env och jwt
 const Hapi = require('@hapi/hapi');
 const mongoose = require("mongoose");
 const Jwt = require("@hapi/jwt");
