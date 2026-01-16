@@ -54,7 +54,7 @@ exports.addItem = async(request, h) => {
         
         return await item.save();
     } catch(err) {
-        return h.response("Error with post-route: " + err.messages).code(500);
+        return h.response("Error with post-route: " + err).code(500);
     }
 }
 
@@ -83,7 +83,7 @@ exports.updateItem = async(request, h) => {
                 return h.response({message: `Uppdateringen lyckades med varan ${updateItem.name}`});
             }
     } catch(err) {
-        return h.response("Error with update-route: " + err.messages).code(500);
+        return h.response("Error with update-route: " + err).code(500);
     }
 }
 

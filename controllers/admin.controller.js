@@ -18,7 +18,7 @@ exports.register = async(request, h) => {
         //Kollar om användarnamn som skickats in finns
         const { user } = request.payload
         //Ignorerar nuvarande id för att den inte ska hitta sig själv
-        const checkUniqueUser = await Item.findOne({ username: user, _id: { $ne: request.params.id } })
+        const checkUniqueUser = await Admin.findOne({ username: user, _id: { $ne: request.params.id } })
         //Skicka error om den finns
         if(checkUniqueUser){
             return h.response({
@@ -84,7 +84,7 @@ exports.updateAdmin = async(request, h) => {
                 return h.response({message: `Uppdateringen lyckades med admin ${updateAdmin.firstname}`});
             }
     } catch(err) {
-        return h.response("Error with update-route: " + err.messages).code(500);
+        return h.response("Error with update-route: " + err).code(500);
     }
 }
 
