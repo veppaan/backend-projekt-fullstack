@@ -18,7 +18,7 @@ exports.register = async(request, h) => {
         //Kollar om användarnamn som skickats in finns
         const {username, firstname, password} = request.payload;
         //Ignorerar nuvarande id för att den inte ska hitta sig själv
-        const checkUniqueUser = await Admin.findOne({ username: user, _id: { $ne: request.params.id } })
+        const checkUniqueUser = await Admin.findOne({ username: username, _id: { $ne: request.params.id } })
         //Skicka error om den finns
         if(checkUniqueUser){
             return h.response({
