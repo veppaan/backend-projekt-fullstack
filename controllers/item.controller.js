@@ -38,9 +38,10 @@ exports.addItem = async(request, h) => {
     try {
         //Kollar om artikelnummer som skickats in finns
         const { articleNumber } = request.payload
-        const checkUniqueArt = await Item.findOne({ articleNumber })
+        //Ignorerar nuvarande id för att den inte ska hitta sig själv
+        const checkUniqueArt = await Item.findOne({ articleNumber: articleNumber, _id: { $ne: request.params.id } })
         //Skicka error om den finns
-        if(checkUniqueArt && checkUniqueArt !== currrentArt.articleNumber){
+        if(checkUniqueArt){
             return h.response({
                 success: false,
                 errors: {
