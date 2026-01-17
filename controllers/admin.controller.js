@@ -28,7 +28,7 @@ exports.register = async(request, h) => {
                 }
             }).code(409)
         }
-        if(key !== process.env.REGISTER_KEY){
+        if(key != process.env.REGISTER_KEY){
             return h.response({
                 success: false,
                 errors: {
