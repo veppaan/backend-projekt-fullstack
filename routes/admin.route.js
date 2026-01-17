@@ -82,6 +82,12 @@ module.exports = (server) => {
                                 'string.base': 'Lösenord måste vara en sträng!',
                                 'string.min': 'Lösenord får inte vara mindre än 3 tecken!',
                                 'string.max': 'Lösenord får inte vara längre än 100 tecken!'
+                            }),
+                        key: Joi.string().required()
+                            .messages({
+                                'string.empty': 'Företagskod får inte vara tomt!',
+                                'any.required': 'Företagskod är obligatorisk att fylla i!',
+                                'string.base': 'Företagskod måste vara en sträng!'
                             })
                     }),
                     failAction: failAction,

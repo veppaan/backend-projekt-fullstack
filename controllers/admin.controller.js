@@ -16,7 +16,7 @@ exports.getAllFirstnames = async(request, h) => {
 exports.register = async(request, h) => {
     try {
         //Kollar om användarnamn som skickats in finns
-        const {username, firstname, password} = request.payload;
+        const {username, firstname, password, key} = request.payload;
         //Ignorerar nuvarande id för att den inte ska hitta sig själv
         const checkUniqueUser = await Admin.findOne({ username: username, _id: { $ne: request.params.id } })
         //Skicka error om den finns
@@ -28,6 +28,14 @@ exports.register = async(request, h) => {
                 }
             }).code(409)
         }
+        if(key !== process.env.REGISTER_KEY){
+            return h.response({
+                success: false,
+                errors: {
+                    key: 'Fel företagskod för att kunna skapa konto!'
+                }
+            }).code(401)
+        }
 
         //Hashar lösenord med saltning 10
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -35,7 +43,8 @@ exports.register = async(request, h) => {
         const admin = new Admin({
             username,
             firstname,
-            password: hashedPassword
+            password: hashedPassword,
+            key
         })
 
         return await admin.save();
