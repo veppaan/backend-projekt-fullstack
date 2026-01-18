@@ -36,7 +36,7 @@ Varans JSON-struktur kan se ut såhär:
   "stock": 8,
   "articleNumber": 234,
   "image": "image.jpg"
-}
+} ```
 
 Andra tabellens namn heter "admins" som skapats med hjälp av MongoDB och mongoose.  
 Tabellens innehåll:
