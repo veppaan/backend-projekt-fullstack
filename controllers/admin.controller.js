@@ -85,7 +85,10 @@ exports.login = async(request, h) => {
 //Uppdatera admin
 exports.updateAdmin = async(request, h) => {
     try {
-            const updateAdmin = await Admin.findByIdAndUpdate(request.params.id, request.payload,{ new: true, runValidators: true });
+        const { firstname, username, password } = request.payload;
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+            const updateAdmin = await Admin.findByIdAndUpdate(request.params.id, { firstname, username, password: hashedPassword} , { new: true, runValidators: true });
             if(!updateAdmin){
                 return h.response({ message: "Admin med angivet id hittas inte, kontrollera och försök igen"}).code(404);
             } else {

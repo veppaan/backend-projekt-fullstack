@@ -105,7 +105,7 @@ module.exports = (server) => {
             options: {
                 validate: {
                     payload: Joi.object({
-                        username: Joi.string().min(3).max(50).required()
+                        username: Joi.string().min(3).max(50)
                             .messages({
                                 'string.empty': 'Användarnamn får inte vara tomt!',
                                 'any.required': 'Användarnamn är obligatorisk att fylla i!',
@@ -113,25 +113,13 @@ module.exports = (server) => {
                                 'string.min': 'Användarnamn får inte vara mindre än 3 tecken!',
                                 'string.max': 'Användarnamn får inte vara längre än 50 tecken!'
                             }),
-                        firstname: Joi.string().min(3).max(50).required()
+                        firstname: Joi.string().min(3).max(50)
                             .messages({
                                 'string.empty': 'Förnamn får inte vara tomt!',
                                 'any.required': 'Förnamn är obligatorisk att fylla i!',
                                 'string.base': 'Förnamn måste vara en sträng!',
                                 'string.min': 'Förnamn får inte vara mindre än 3 tecken!',
                                 'string.max': 'Förnamn får inte vara längre än 50 tecken!'
-                            }),
-                        lastname: Joi.string()
-                            .messages({
-                                'string.base': 'Förnamn måste vara en sträng!'
-                            }),
-                        jobtitle: Joi.string().min(3).max(50).required()
-                            .messages({
-                                'string.empty': 'Jobbtitel får inte vara tomt!',
-                                'any.required': 'Jobbtitel är obligatorisk att fylla i!',
-                                'string.base': 'Jobbtitel måste vara en sträng!',
-                                'string.min': 'Jobbtitel får inte vara mindre än 3 tecken!',
-                                'string.max': 'Jobbtitel får inte vara längre än 50 tecken!'
                             }),
                         password: Joi.string().min(3).max(100).required()
                             .messages({
