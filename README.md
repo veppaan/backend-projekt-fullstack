@@ -1,7 +1,7 @@
 **Vera Kippel veki2400**
 
-Ett API byggt med hapi. 
-API:et hanterar en tabell med varor samt admin konton vid inloggning/registrering.
+En REST-webbtjänst byggt med hapi. 
+REST-webbtjänsten hanterar en tabell med varor samt admin konton vid inloggning/registrering.
 
 Första tabellens namn heter "items" som skapats med hjälp av MongoDB och mongoose.  
 Tabellens innehåll:
@@ -39,7 +39,7 @@ Varans JSON-struktur kan se ut såhär:
 } 
 ```
 
-Andra tabellens namn heter "admins" som skapats med hjälp av MongoDB och mongoose.  
+Andra tabellens namn är "admins" som skapats med hjälp av MongoDB och mongoose.  
 Tabellens innehåll:
 - _id (skapas automatiskt av mongodb)
 - username(string)
