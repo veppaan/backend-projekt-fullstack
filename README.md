@@ -5,7 +5,7 @@ API:et hanterar en tabell med varor samt admin konton vid inloggning/registrerin
 
 Första tabellens namn heter "items" som skapats med hjälp av MongoDB och mongoose.  
 Tabellens innehåll:
-- _id
+- _id (som skapas automatiskt av mongodb)
 - name(string)
 - description(string)
 - price(number)
@@ -40,7 +40,7 @@ Varans JSON-struktur kan se ut såhär:
 
 Andra tabellens namn heter "admins" som skapats med hjälp av MongoDB och mongoose.  
 Tabellens innehåll:
-- _id
+- _id (skapas automatiskt av mongodb)
 - username(string)
 - firstname(string)
 - password(string)
