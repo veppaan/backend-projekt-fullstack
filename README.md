@@ -16,6 +16,7 @@ Tabellens innehåll:
 
 
 Användning:
+Alla routes förutom GET med ändelsen "/" kräver token
 
 |Metod | Ändpunkt | Beskrivning |
 -------|----------|-------------|
@@ -48,11 +49,12 @@ Tabellens innehåll:
 
 
 Användning:
+GET, PUT och DELETE kräver token
 
 |Metod | Ändpunkt | Beskrivning |
 -------|----------|-------------|
 |GET | "/admins" | Hämta alla förnamn i personalen|
-|POST | "/admin/login" | Loggar in en personal med registrerat inlogg|
+|POST | "/admins/login" | Loggar in en personal med registrerat inlogg|
 |POST | "/admins/register" | Skapar inloggning för personal|
 |PUT | "/admins/{id}" | Uppdaterar inlogging med angivet id|
 |DELETE | "/admins/{id}" | Radera en inloggning med angivet id|
