@@ -135,6 +135,7 @@ module.exports = (server) => {
                         abortEarly: false
                     }
                 },
+                auth: 'jwt',
             }
         },
         {
