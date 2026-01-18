@@ -43,7 +43,7 @@ Tabellens innehåll:
 - username(string)
 - firstname(string)
 - password(string)
-- stock(number)
+- key(string)
 - __v: 0 (som skapas automatiskt av mongodb)
 
 
@@ -57,11 +57,12 @@ Användning:
 |PUT | "/admins/{id}" | Uppdaterar inlogging med angivet id|
 |DELETE | "/admins/{id}" | Radera en inloggning med angivet id|
 
-Personalens JSON-struktur kan se ut såhär:
+Personalens JSON-struktur för registrering kan se ut såhär:
 ```json
 {
   "firstname": "Vera",
   "username": "mittkonto",
-  "password": "mittlösenord"
+  "password": "mittlösenord",
+  "key": "företagskod"
 }
 ```
